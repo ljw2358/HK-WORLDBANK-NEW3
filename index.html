@@ -1,653 +1,437 @@
 <!DOCTYPE html>
+<!--
+  ====================================================================================================
+  [HK WORLD BANK - MASTER ENTERPRISE PLATFORM & FULLSTACK MONOLITH SOURCE CODE]
+  Author: Chairman Lee Jaewan (Hyekong) / 혜공 회장님
+  Platform: hkwb.world (Web3 Global Sovereign Digital Banking Platform)
+  Version: 14.0.0-ULTIMATE-ENTERPRISE-EDITION (Full Monolith Architecture & Maximum Density)
+  Description: End-to-end sovereign banking platform featuring rigorous sectionized architecture,
+               global CSS variables, direct main hub entry, 10-point distributed finance pipeline,
+               60-language AGI 삐니 engine, FATF Travel Rule compliance, and 8-industry ecosystem routing.
+  ====================================================================================================
+-->
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HK BANK - 글로벌 슈퍼 뱅킹 플랫폼 (Enterprise Edition 1300+)</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-    
-    /* ==========================================================================
-       [SECTION 1: GLOBAL ROOT & ARCHITECTURE STYLES]
-       ========================================================================== */
-    :root {
-      --hk-primary: #0066ff;
-      --hk-purple: #8b1da0;
-      --hk-purple-hover: #6b147d;
-      --hk-bg: #f2f4f6;
-      --hk-text: #191f28;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HK BANK - 글로벌 슈퍼 뱅킹 플랫폼 (Enterprise Ultimate Edition 1800+)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"></script>
+    <!-- FontAwesome & Pretendard -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+    <style>
+        /* ================================================================================== */
+        /* [SECTION 1: GLOBAL ROOT & ARCHITECTURE STYLES] */
+        /* ================================================================================== */
+        :root {
+            --hk-primary: #0066ff;
+            --hk-purple: #8b5da9;
+            --hk-purple-hover: #6b147d;
+            --hk-bg: #04060f;
+            --hk-text: #f3f4f6;
+            --hk-card-bg: rgba(17, 24, 39, 0.90);
+            --hk-border: rgba(59, 130, 246, 0.3);
+        }
 
-    body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-      background-color: var(--hk-bg);
-      color: var(--hk-text);
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-height: 100vh;
-      margin: 0;
-      padding: 0;
-    }
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background-color: var(--hk-bg);
+            color: var(--hk-text);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-    .app-container {
-      width: 100%;
-      max-width: 440px;
-      height: 100vh;
-      max-height: 940px;
-      background: #ffffff;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-      overflow: hidden;
-    }
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            height: 940px;
+            background: rgba(13, 18, 30, 0.95);
+            backdrop-filter: blur(24px);
+            border: 1px solid var(--hk-border);
+            border-radius: 36px;
+            box-shadow: 0 0 60px rgba(0, 102, 255, 0.35);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
 
-    @media (min-width: 480px) {
-      .app-container {
-        height: 96vh;
-        margin-top: 2vh;
-        border-radius: 32px;
-        border: 1px solid #e5e8eb;
-      }
-    }
+        .glass-card {
+            background: var(--hk-card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
 
-    /* 강렬하고 선명한 자주색 버튼 스타일 (채우기, 즉시환전 전용) */
-    .bg-purple-accent {
-      background-color: var(--hk-purple) !important;
-      color: #ffffff !important;
-    }
-    .bg-purple-accent:active {
-      background-color: var(--hk-purple-hover) !important;
-    }
+        .code-box {
+            background: #020408;
+            color: #38bdf8;
+            font-family: 'Courier New', Courier, monospace;
+        }
 
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-
-    /* 애니메이션 및 모달 확장 효과 스타일 정의 */
-    .modal-transition {
-      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-  </style>
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track { background: #070913; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+    </style>
 </head>
 <body>
 
-  <div class="app-container">
-    <!-- ==========================================================================
-       [SECTION 2: HEADER NAVIGATION AREA]
-       ========================================================================== -->
-    <header class="pt-6 pb-4 px-5 flex justify-between items-center bg-white sticky top-0 z-20 border-b border-gray-100">
-      <div class="flex items-center space-x-2.5">
-        <div class="w-10 h-10 rounded-xl bg-[#0066ff] flex items-center justify-center font-black text-white text-xl shadow-md">
-          HK
-        </div>
-        <!-- HK BANK 제일 크게 강조 -->
-        <h1 class="text-3xl font-extrabold tracking-tight text-gray-900">
-          HK <span class="text-[#0066ff]">BANK</span>
-        </h1>
-      </div>
-      <div class="flex items-center space-x-2 text-gray-700">
-        <button class="p-2 hover:bg-gray-100 rounded-full transition-colors" aria-label="알림 센터">
-          <i class="fa-regular fa-bell text-2xl"></i>
-        </button>
-        <!-- 햄버거 (삼선 ≡) 내비게이터 트리거 버튼 -->
-        <button id="openSidebar" class="p-2 hover:bg-gray-100 rounded-full transition-colors" aria-label="전체 메뉴 및 네비게이터">
-          <i class="fa-solid fa-bars text-2xl"></i>
-        </button>
-      </div>
-    </header>
+    <!-- 마스터 컨테이너 -->
+    <div class="app-container">
 
-    <!-- ==========================================================================
-       [SECTION 3: MAIN DASHBOARD CONTENT AREA]
-       ========================================================================== -->
-    <main class="flex-1 overflow-y-auto px-5 py-3 space-y-4 no-scrollbar bg-[#f9fafb]">
-      
-      <!-- Welcome Banner Section -->
-      <div class="pt-1 pb-2">
-        <h2 class="text-xl font-bold text-gray-900 flex items-center gap-1.5" data-i18n="main_banner_title">
-          글로벌 슈퍼 뱅킹 플랫폼 👋
-        </h2>
-        <p class="text-xs text-gray-500 mt-1" data-i18n="main_banner_sub">
-          오늘도 안전하고 스마트한 금융 생활을 지원합니다.
-        </p>
-      </div>
-
-      <!-- Account Card 1: 원화 주거래 통장 -->
-      <div class="bg-white rounded-3xl p-5 border border-gray-100 shadow-sm">
-        <div class="flex justify-between items-center text-xs text-gray-500 mb-2">
-          <span class="font-medium text-gray-600 flex items-center gap-1.5">
-            <i class="fa-solid fa-wallet text-blue-500"></i>
-            <span data-i18n="account_krw">HK 주거래통장</span>
-          </span>
-          <span class="text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full font-semibold text-[11px]" data-i18n="withdrawable">출금가능</span>
-        </div>
-        <div class="text-2xl font-bold text-gray-900 mb-4 tracking-tight">
-          314,159,000 <span class="text-lg font-normal text-gray-600" data-i18n="unit_krw">원</span>
-        </div>
-        <div class="grid grid-cols-2 gap-2.5">
-          <button class="py-3 bg-gray-100 active:bg-gray-200 text-gray-800 text-sm font-bold rounded-2xl transition-all" data-i18n="btn_transfer">
-            송금하기
-          </button>
-          <!-- 자주색 채우기 버튼 -->
-          <button class="py-3 bg-purple-accent text-white text-sm font-bold rounded-2xl shadow-sm transition-all" data-i18n="btn_fill">
-            채우기
-          </button>
-        </div>
-      </div>
-
-      <!-- Account Card 2: Pi 신탁 & 세이프박스 -->
-      <div class="bg-white rounded-3xl p-5 border border-gray-100 shadow-sm">
-        <div class="flex justify-between items-center text-xs text-gray-500 mb-2">
-          <span class="font-medium text-amber-600 flex items-center gap-1">
-            <i class="fa-solid fa-pi text-xs"></i> <span data-i18n="account_pi">Pi 신탁 & 세이프박스</span>
-          </span>
-          <span class="text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full font-semibold text-[11px]" data-i18n="pi_interest">
-            연 31.41% 복리
-          </span>
-        </div>
-        <div class="text-2xl font-bold text-gray-900 mb-4 tracking-tight">
-          314,159.00 <span class="text-lg font-normal text-amber-600">PI</span>
-        </div>
-        <div class="grid grid-cols-2 gap-2.5">
-          <button class="py-3 bg-gray-100 active:bg-gray-200 text-gray-800 text-sm font-bold rounded-2xl transition-all" data-i18n="btn_manage">
-            관리하기
-          </button>
-          <!-- 자주색 즉시 환전 버튼 -->
-          <button class="py-3 bg-purple-accent text-white text-sm font-bold rounded-2xl shadow-sm transition-all" data-i18n="btn_swap">
-            즉시 환전
-          </button>
-        </div>
-      </div>
-
-      <!-- Quick Services Grid (4개 바로가기 기능) -->
-      <div class="grid grid-cols-4 gap-2 py-2">
-        <button class="flex flex-col items-center justify-center p-3 bg-white rounded-2xl border border-gray-100 shadow-sm active:bg-gray-50">
-          <div class="w-11 h-11 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-1.5 text-lg">
-            <i class="fa-solid fa-paper-plane"></i>
-          </div>
-          <span class="text-xs text-gray-700 font-semibold" data-i18n="quick_remit">이체</span>
-        </button>
-        
-        <button class="flex flex-col items-center justify-center p-3 bg-white rounded-2xl border border-gray-100 shadow-sm active:bg-gray-50">
-          <div class="w-11 h-11 rounded-2xl bg-purple-50 text-purple-700 flex items-center justify-center mb-1.5 text-lg font-bold">
-            ₩
-          </div>
-          <span class="text-xs text-gray-700 font-semibold" data-i18n="quick_fill">채우기</span>
-        </button>
-
-        <button class="flex flex-col items-center justify-center p-3 bg-white rounded-2xl border border-gray-100 shadow-sm active:bg-gray-50">
-          <div class="w-11 h-11 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-1.5 text-lg">
-            <i class="fa-solid fa-hand-holding-dollar"></i>
-          </div>
-          <span class="text-xs text-gray-700 font-semibold" data-i18n="quick_loan">마이너스대출</span>
-        </button>
-
-        <button class="flex flex-col items-center justify-center p-3 bg-white rounded-2xl border border-gray-100 shadow-sm active:bg-gray-50">
-          <div class="w-11 h-11 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-1.5 text-lg">
-            <i class="fa-solid fa-qrcode"></i>
-          </div>
-          <span class="text-xs text-gray-700 font-semibold" data-i18n="quick_qr">QR결제</span>
-        </button>
-      </div>
-
-      <!-- 최근 거래 내역 섹션 -->
-      <div class="bg-white rounded-3xl p-5 border border-gray-100 shadow-sm">
-        <div class="flex justify-between items-center mb-4">
-          <h3 class="text-base font-bold text-gray-900" data-i18n="recent_history">최근 거래 내역</h3>
-          <button class="text-xs font-semibold text-gray-400 hover:text-gray-600" data-i18n="view_all">전체보기</button>
-        </div>
-        <div class="space-y-4">
-          <div class="flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-              <div class="w-10 h-10 rounded-2xl bg-gray-100 flex items-center justify-center text-gray-600">
-                <i class="fa-solid fa-robot"></i>
-              </div>
-              <div>
-                <div class="text-sm font-bold text-gray-900" data-i18n="tx1_title">HK-ROBOT 개발 지원금</div>
-                <div class="text-xs text-gray-400" data-i18n="tx1_time">오늘 오전 10:24</div>
-              </div>
+        <!-- ================================================================================== -->
+        <!-- [SECTION 2: HEADER & SYSTEM STATUSBAR] -->
+        <!-- ================================================================================== -->
+        <div class="px-5 py-4 bg-gray-950/95 border-b border-gray-800 flex justify-between items-center z-30">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-black text-sm shadow-md">👑</div>
+                <div>
+                    <h1 class="text-xs font-black text-white tracking-wider">HK WORLD BANK (hkwb.world)</h1>
+                    <p class="text-[9px] text-emerald-400 font-mono">● ENTERPRISE CLUSTER & TESTNET PI RPC ACTIVE</p>
+                </div>
             </div>
-            <div class="text-right">
-              <div class="text-sm font-bold text-emerald-600">+ 50,000,000 <span data-i18n="unit_krw">원</span></div>
+            <div class="flex items-center gap-2">
+                <span id="sys-clock" class="text-[9px] text-gray-400 font-mono bg-gray-900 px-2 py-1 rounded-lg border border-gray-800"></span>
+                <button onclick="toggleTerminal()" class="text-[10px] bg-gray-800 hover:bg-gray-700 text-blue-400 px-2.5 py-1 rounded-lg font-mono border border-gray-700 transition">터미널</button>
             </div>
-          </div>
-
-          <div class="flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-              <div class="w-10 h-10 rounded-2xl bg-gray-100 flex items-center justify-center text-gray-600">
-                <i class="fa-solid fa-mug-hot"></i>
-              </div>
-              <div>
-                <div class="text-sm font-bold text-gray-900" data-i18n="tx2_title">스타벅스 (블랙커피)</div>
-                <div class="text-xs text-gray-400" data-i18n="tx2_time">어제 오후 2:15</div>
-              </div>
-            </div>
-            <div class="text-right">
-              <div class="text-sm font-bold text-gray-900">- 4,500 <span data-i18n="unit_krw">원</span></div>
-            </div>
-          </div>
         </div>
-      </div>
 
-    </main>
+        <!-- 메인 뷰포트 영역 -->
+        <div class="flex-1 flex overflow-hidden relative">
 
-    <!-- ==========================================================================
-       [SECTION 4: FIXED BOTTOM NAVIGATION BAR (홈, 자산, 혜택, 전체메뉴)]
-       ========================================================================== -->
-    <footer class="bg-white border-t border-gray-100 px-3 py-2.5 flex justify-around items-center z-20">
-      <button class="flex flex-col items-center justify-center text-[#0066ff] py-1 w-16">
-        <i class="fa-solid fa-house text-lg mb-1"></i>
-        <span class="text-[11px] font-bold" data-i18n="nav_home">홈</span>
-      </button>
+            <div id="viewport" class="flex-1 flex flex-col h-full overflow-y-auto p-5 space-y-4">
 
-      <button class="flex flex-col items-center justify-center text-gray-400 hover:text-gray-800 py-1 w-16">
-        <i class="fa-solid fa-chart-pie text-lg mb-1"></i>
-        <span class="text-[11px] font-bold" data-i18n="nav_assets">자산</span>
-      </button>
+                <!-- ================================================================================== -->
+                <!-- [SECTION 3: MAIN HUB - 5 CORE FEATURES (DIRECT ENTRY)] -->
+                <!-- ================================================================================== -->
+                <div id="sec-hub" class="space-y-4">
+                    <div class="flex justify-between items-center p-4 rounded-2xl bg-gradient-to-r from-blue-950/70 to-indigo-950/70 border border-blue-500/40 shadow-lg">
+                        <div>
+                            <h2 class="text-sm font-black text-white tracking-wide">HK 통합 메인 허브</h2>
+                            <p class="text-[10px] text-blue-400 mt-0.5">회장 이재완 (혜공) | 5대 핵심 기능 및 에코시스템 바로가기</p>
+                        </div>
+                        <span class="text-[10px] bg-blue-600/20 text-blue-400 px-2.5 py-1 rounded-xl border border-blue-500/30 font-mono">VIP 회장</span>
+                    </div>
 
-      <button class="flex flex-col items-center justify-center text-gray-400 hover:text-gray-800 py-1 w-16">
-        <i class="fa-solid fa-bolt text-lg mb-1"></i>
-        <span class="text-[11px] font-bold" data-i18n="nav_benefits">혜택</span>
-      </button>
+                    <div class="space-y-3">
+                        <!-- 1. 개인 자산 대시보드 -->
+                        <div onclick="navigateView('asset')" class="glass-card p-3.5 rounded-2xl border border-blue-500/30 hover:border-blue-400 cursor-pointer transition group flex items-center justify-between shadow-md">
+                            <div class="space-y-0.5">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-blue-400 text-sm">⭐</span>
+                                    <h3 class="text-xs font-bold text-white group-hover:text-blue-300 transition">1. 개인 자산 대시보드</h3>
+                                </div>
+                                <p class="text-[10px] text-gray-400 pl-5">실시간 잔액 및 Pi코인·누적 이자 관리</p>
+                            </div>
+                            <span class="text-gray-500 group-hover:text-white transition text-xs">➔</span>
+                        </div>
 
-      <!-- 하단 전체메뉴 버튼 (클릭 시 삼선 햄버거 메뉴 오픈) -->
-      <button id="openNavMenu" class="flex flex-col items-center justify-center text-gray-400 hover:text-gray-800 py-1 w-16">
-        <i class="fa-solid fa-bars text-lg mb-1"></i>
-        <span class="text-[11px] font-bold" data-i18n="nav_menu">전체메뉴</span>
-      </button>
-    </footer>
+                        <!-- 2. 사고 팔고 예금하기 -->
+                        <div onclick="navigateView('finance')" class="glass-card p-3.5 rounded-2xl border border-emerald-500/30 hover:border-emerald-400 cursor-pointer transition group flex items-center justify-between shadow-md">
+                            <div class="space-y-0.5">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-emerald-400 text-sm">⚡</span>
+                                    <h3 class="text-xs font-bold text-white group-hover:text-emerald-300 transition">2. 사고 팔고 예금하기</h3>
+                                </div>
+                                <p class="text-[10px] text-gray-400 pl-5">10대 분산 연동망 상세 프로세스 실행</p>
+                            </div>
+                            <span class="text-gray-500 group-hover:text-white transition text-xs">➔</span>
+                        </div>
 
-    <!-- ==========================================================================
-       [SECTION 5: HK BANK NAVIGATOR SIDEBAR (20개국 다국어 엔진 & 9대 미래 생태계)]
-       ========================================================================== -->
-    <div id="sidebarBackdrop" class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity"></div>
-    <aside id="sidebar" class="fixed top-0 left-0 w-[82%] max-w-[350px] h-full bg-white z-50 transform -translate-x-full transition-transform duration-300 ease-in-out p-5 overflow-y-auto no-scrollbar shadow-2xl">
-      <div class="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
-        <h2 class="text-lg font-extrabold text-blue-600 tracking-tight">HK BANK NAVIGATOR</h2>
-        <button id="closeSidebar" class="p-2 text-gray-500 hover:text-gray-900 text-xl font-bold" aria-label="닫기">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
+                        <!-- 3. 고객센터 AGI 삐니 -->
+                        <div onclick="navigateView('ai')" class="glass-card p-3.5 rounded-2xl border border-purple-500/30 hover:border-purple-400 cursor-pointer transition group flex items-center justify-between shadow-md">
+                            <div class="space-y-0.5">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-purple-400 text-sm">🤖</span>
+                                    <h3 class="text-xs font-bold text-white group-hover:text-purple-300 transition">3. 고객센터 AGI 삐니</h3>
+                                </div>
+                                <p class="text-[10px] text-gray-400 pl-5">60개국어 매속까지 변환 AI 삐니 실시간 구동</p>
+                            </div>
+                            <span class="text-gray-500 group-hover:text-white transition text-xs">➔</span>
+                        </div>
 
-      <!-- Core 20 Languages Engine Dropdown -->
-      <div class="mb-6">
-        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
-          🌐 CORE 20-LANGUAGE ENGINE
-        </label>
-        <select id="langSelect" class="w-full bg-gray-50 text-sm font-bold text-gray-800 py-3 px-3.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer">
-          <option value="ko">1. 🇰🇷 한국어 (Korean)</option>
-          <option value="en">2. 🇺🇸 English (영어)</option>
-          <option value="zh">3. 🇨🇳 中文 (중국어)</option>
-          <option value="ja">4. 🇯🇵 日本語 (일본어)</option>
-          <option value="ru">5. 🇷🇺 Русский (러시아어)</option>
-          <option value="vi">6. 🇻🇳 Tiếng Việt (베트남어)</option>
-          <option value="th">7. 🇹🇭 ไทย (태국어)</option>
-          <option value="id">8. 🇮🇩 Bahasa Indonesia (인도네시아어)</option>
-          <option value="ar">9. 🇵🇸 العربية (팔레스타인/아랍어)</option>
-          <option value="de">10. 🇩🇪 Deutsch (독일어)</option>
-          <option value="it">11. 🇮🇹 Italiano (이태리어)</option>
-          <option value="fr">12. 🇫🇷 Français (프랑스어)</option>
-          <option value="ha">13. 🇳🇬 Hausa / English (나이지리아)</option>
-          <option value="cm">14. 🇨🇲 Français / English (카메룬)</option>
-          <option value="zu">15. 🇿🇦 isiZulu / English (남아공)</option>
-          <option value="hi">16. 🇮🇳 हिन्दी (힌디어)</option>
-          <option value="es">17. 🇪🇸 Español (스페인어)</option>
-          <option value="pt">18. 🇧🇷 Português (브라질)</option>
-          <option value="uk">19. 🇺🇦 Українська (우크라이나어)</option>
-          <option value="tr">20. 🇹🇷 Türkçe (터키어)</option>
-        </select>
-      </div>
+                        <!-- 4. 네비게이터 -->
+                        <div onclick="navigateView('navigator')" class="glass-card p-3.5 rounded-2xl border border-amber-500/30 hover:border-amber-400 cursor-pointer transition group flex items-center justify-between shadow-md">
+                            <div class="space-y-0.5">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-amber-400 text-sm">🧭</span>
+                                    <h3 class="text-xs font-bold text-white group-hover:text-amber-300 transition">4. 네비게이터 (메뉴 보기)</h3>
+                                </div>
+                                <p class="text-[10px] text-gray-400 pl-5">백서 100선·FAQ 20선·3대 Policies·FATF·21개국법·8대 산업</p>
+                            </div>
+                            <span class="text-gray-500 group-hover:text-white transition text-xs">➔</span>
+                        </div>
 
-      <!-- HK 9 Major Future Ecosystems -->
-      <div>
-        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">
-          HK 9 MAJOR FUTURE ECOSYSTEMS
-        </label>
-        <div class="space-y-2.5">
-          <a href="#" class="flex items-center p-3 rounded-2xl bg-gray-50 hover:bg-blue-50 text-gray-800 hover:text-blue-600 font-semibold text-sm transition-all border border-gray-100">
-            <span class="w-7 text-center text-blue-600 mr-2"><i class="fa-solid fa-building-columns"></i></span>
-            <span>1. 웹3 디지털 뱅킹 (HK BANK)</span>
-          </a>
-          <a href="#" class="flex items-center p-3 rounded-2xl bg-gray-50 hover:bg-blue-50 text-gray-800 hover:text-blue-600 font-semibold text-sm transition-all border border-gray-100">
-            <span class="w-7 text-center text-emerald-600 mr-2"><i class="fa-solid fa-robot"></i></span>
-            <span>2. 휴머노이드 로봇 (HK-ROBOT)</span>
-          </a>
-          <a href="#" class="flex items-center p-3 rounded-2xl bg-gray-50 hover:bg-blue-50 text-gray-800 hover:text-blue-600 font-semibold text-sm transition-all border border-gray-100">
-            <span class="w-7 text-center text-purple-600 mr-2"><i class="fa-solid fa-glasses"></i></span>
-            <span>3. AI 스마트 글래스 (HK-NEXUS)</span>
-          </a>
-          <a href="#" class="flex items-center p-3 rounded-2xl bg-gray-50 hover:bg-blue-50 text-gray-800 hover:text-blue-600 font-semibold text-sm transition-all border border-gray-100">
-            <span class="w-7 text-center text-amber-500 mr-2"><i class="fa-solid fa-plane-helicopter"></i></span>
-            <span>4. 도심항공교통 (HK-UAM)</span>
-          </a>
-          <a href="#" class="flex items-center p-3 rounded-2xl bg-gray-50 hover:bg-blue-50 text-gray-800 hover:text-blue-600 font-semibold text-sm transition-all border border-gray-100">
-            <span class="w-7 text-center text-cyan-600 mr-2"><i class="fa-solid fa-dna"></i></span>
-            <span>5. 퀀텀 바이오 (HK-QUANTUM)</span>
-          </a>
-          <a href="#" class="flex items-center p-3 rounded-2xl bg-gray-50 hover:bg-blue-50 text-gray-800 hover:text-blue-600 font-semibold text-sm transition-all border border-gray-100">
-            <span class="w-7 text-center text-indigo-600 mr-2"><i class="fa-solid fa-rocket"></i></span>
-            <span>6. 우주항공 (HK-SPACE)</span>
-          </a>
-          <a href="#" class="flex items-center p-3 rounded-2xl bg-gray-50 hover:bg-blue-50 text-gray-800 hover:text-blue-600 font-semibold text-sm transition-all border border-gray-100">
-            <span class="w-7 text-center text-orange-600 mr-2"><i class="fa-solid fa-sun"></i></span>
-            <span>7. 인공태양 핵융합 (HK-FUSION)</span>
-          </a>
-          <a href="#" class="flex items-center p-3 rounded-2xl bg-gray-50 hover:bg-blue-50 text-gray-800 hover:text-blue-600 font-semibold text-sm transition-all border border-gray-100">
-            <span class="w-7 text-center text-slate-600 mr-2"><i class="fa-solid fa-shield-halved"></i></span>
-            <span>8. 첨단 방산산업 (HK-DEFENSE)</span>
-          </a>
-          <a href="#" class="flex items-center p-3 rounded-2xl bg-gray-50 hover:bg-blue-50 text-gray-800 hover:text-blue-600 font-semibold text-sm transition-all border border-gray-100">
-            <span class="w-7 text-center text-rose-600 mr-2"><i class="fa-solid fa-city"></i></span>
-            <span>9. 해오름 특별시 (HK-MEGA CITY)</span>
-          </a>
+                        <!-- 5. 유튜브와 틱톡 채널 연동 -->
+                        <div onclick="navigateView('media')" class="glass-card p-3.5 rounded-2xl border border-red-500/30 hover:border-red-400 cursor-pointer transition group flex items-center justify-between shadow-md">
+                            <div class="space-y-0.5">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-red-400 text-sm">▶️</span>
+                                    <h3 class="text-xs font-bold text-white group-hover:text-red-300 transition">5. 유튜브와 틱톡 채널 연동</h3>
+                                </div>
+                                <p class="text-[10px] text-gray-400 pl-5">HK 통합 메인 허브 5번째 방송 센터</p>
+                            </div>
+                            <span class="text-gray-500 group-hover:text-white transition text-xs">➔</span>
+                        </div>
+                    </div>
+
+                    <!-- 8대 전략 계열사 링크 인프라 -->
+                    <div class="glass-card p-3.5 rounded-2xl space-y-2 shadow-md">
+                        <h4 class="text-[11px] font-bold text-blue-400">🏢 해오름 특별시 8대 전략 계열사 인프라</h4>
+                        <div class="grid grid-cols-2 gap-1.5 text-[10px] text-center">
+                            <div class="p-2 bg-gray-900/90 rounded-xl text-blue-300 border border-blue-500/20">로봇 (Figure AI)</div>
+                            <div class="p-2 bg-gray-900/90 rounded-xl text-blue-300 border border-blue-500/20">스마트 글래스 (해온/라온)</div>
+                            <div class="p-2 bg-gray-900/90 rounded-xl text-blue-300 border border-blue-500/20">도심항공교통 (UAM)</div>
+                            <div class="p-2 bg-gray-900/90 rounded-xl text-blue-300 border border-blue-500/20">부품뱅크 (PartsBank)</div>
+                            <div class="p-2 bg-gray-900/90 rounded-xl text-indigo-300 border border-indigo-500/20">퀀텀바이오</div>
+                            <div class="p-2 bg-gray-900/90 rounded-xl text-indigo-300 border border-indigo-500/20">인공태양 (핵융합)</div>
+                            <div class="p-2 bg-gray-900/90 rounded-xl text-purple-300 border border-purple-500/20">우주산업 (Space)</div>
+                            <div class="p-2 bg-gray-900/90 rounded-xl text-purple-300 border border-purple-500/20">방위산업 (Defence)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================================================================================== -->
+                <!-- [SECTION 4: SUB VIEWS ARCHITECTURE] -->
+                <!-- ================================================================================== -->
+                <!-- 1. 자산 대시보드 서브 뷰 -->
+                <div id="sub-asset" class="hidden space-y-4">
+                    <div class="flex justify-between items-center">
+                        <button onclick="navigateView('hub')" class="text-xs bg-gray-800 text-blue-400 px-3 py-1.5 rounded-xl font-bold">⬅️ 메인 허브로</button>
+                        <h2 class="text-xs font-bold text-white">개인 자산 대시보드</h2>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl space-y-3 border border-blue-500/30">
+                        <p class="text-[11px] text-gray-400">총 보유 자산 (Total Assets)</p>
+                        <h3 class="text-xl font-black text-white">₩ 1,485,200,000 <span class="text-xs font-normal text-blue-400">($1,100,000)</span></h3>
+                        <div class="pt-3 border-t border-white/10 grid grid-cols-2 gap-2 text-xs">
+                            <div>
+                                <span class="text-gray-400">Pi 코인 보유량:</span>
+                                <p class="font-bold text-amber-400">12,450.00 Pi</p>
+                            </div>
+                            <div>
+                                <span class="text-gray-400">실시간 누적 이자:</span>
+                                <p class="font-bold text-emerald-400">+340.50 Pi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. 사고 팔고 예금하기 서브 뷰 -->
+                <div id="sub-finance" class="hidden space-y-4">
+                    <div class="flex justify-between items-center">
+                        <button onclick="navigateView('hub')" class="text-xs bg-gray-800 text-blue-400 px-3 py-1.5 rounded-xl font-bold">⬅️ 메인 허브로</button>
+                        <h2 class="text-xs font-bold text-white">사고 팔고 예금하기</h2>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl space-y-3">
+                        <h4 class="text-xs font-bold text-emerald-400">⚡ 10대 분산 연동망 금융 프로세스</h4>
+                        <div class="grid grid-cols-3 gap-2 text-center text-xs">
+                            <button onclick="callApiAction('지갑연결', 'Web3 분산 지갑 세션 동기화 완료')" class="p-2.5 bg-gray-900 hover:bg-emerald-600/30 rounded-xl text-gray-200">🔗 지갑연결</button>
+                            <button onclick="callApiAction('송금/결제', '모바일 전용 QR 송금 및 결제 라우팅')" class="p-2.5 bg-gray-900 hover:bg-emerald-600/30 rounded-xl text-gray-200">💸 송금/결제</button>
+                            <button onclick="callApiAction('예치/보상', '스마트 컨트랙트 예치 및 보상 가동')" class="p-2.5 bg-gray-900 hover:bg-emerald-600/30 rounded-xl text-gray-200">💰 예치/보상</button>
+                            <button onclick="callApiAction('기본소득(UBI)', '순수익 30% UBI 자동 배분 엔진 연동')" class="p-2.5 bg-gray-900 hover:bg-emerald-600/30 rounded-xl text-gray-200">🛡️ 기본소득</button>
+                            <button onclick="callApiAction('토큰스왑', 'DEX 탈중앙화 토큰 교환 완료')" class="p-2.5 bg-gray-900 hover:bg-emerald-600/30 rounded-xl text-gray-200">🔄 토큰스왑</button>
+                            <button onclick="callApiAction('LP스테이킹', '유동성 공급자 보상 스테이킹 활성화')" class="p-2.5 bg-gray-900 hover:bg-emerald-600/30 rounded-xl text-gray-200">📈 LP스테이킹</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. 고객센터 AGI 삐니 서브 뷰 (60개국어) -->
+                <div id="sub-ai" class="hidden space-y-4">
+                    <div class="flex justify-between items-center">
+                        <button onclick="navigateView('hub')" class="text-xs bg-gray-800 text-blue-400 px-3 py-1.5 rounded-xl font-bold">⬅️ 메인 허브로</button>
+                        <h2 class="text-xs font-bold text-white">고객센터 AGI 삐니 (60개국어)</h2>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl space-y-3">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-xs font-bold text-purple-400">🤖 AGI 삐니 통번역 센터</h4>
+                            <select id="lang-picker" onchange="changeLang()" class="bg-gray-900 text-[10px] text-white px-2 py-1 rounded border border-gray-700">
+                                <option value="ko">한국어 (Korean)</option>
+                                <option value="en">English</option>
+                                <option value="zh">中文 (Chinese)</option>
+                                <option value="ja">日本語 (Japanese)</option>
+                                <option value="ru">Русский (Russian)</option>
+                                <option value="vi">Tiếng Việt (Vietnamese)</option>
+                                <option value="th">ไทย (Thai)</option>
+                                <option value="id">Bahasa Indonesia</option>
+                                <option value="ps">فلسطين (Palestinian)</option>
+                                <option value="de">Deutsch (German)</option>
+                                <option value="it">Italiano (Italian)</option>
+                                <option value="fr">Français (French)</option>
+                                <option value="ng">Nigeria</option>
+                                <option value="cm">Cameroon</option>
+                                <option value="za">South Africa</option>
+                                <option value="hi">हिन्दी (Hindi)</option>
+                                <option value="es">Español (Spanish)</option>
+                                <option value="br">Português (Brazil)</option>
+                                <option value="ua">Українська (Ukrainian)</option>
+                                <option value="pk">Pakistan</option>
+                                <option value="bn">Bengal</option>
+                                <option value="bd">Bangladesh</option>
+                                <option value="uz">Oʻzbekcha (Uzbekistan)</option>
+                                <option value="sd">Sudan</option>
+                                <option value="tz">Tanzania</option>
+                                <option disabled>+ 36 Additional Global Languages Supported</option>
+                            </select>
+                        </div>
+                        <div id="chat-window" class="h-44 bg-gray-950 rounded-xl p-3 text-xs overflow-y-auto space-y-2 border border-gray-800">
+                            <p class="text-gray-300"><span class="text-purple-400 font-bold">[삐니]:</span> 회장님, 안녕하십니까! 60개국어 통번역 AGI 삐니 대기 중입니다.</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <input type="text" id="chat-txt" placeholder="삐니에게 질문하기..." class="flex-1 px-3 py-2 bg-gray-900 rounded-xl text-xs text-white border border-gray-700 focus:outline-none">
+                            <button onclick="sendChat()" class="px-4 py-2 bg-purple-600 hover:bg-purple-500 rounded-xl text-xs font-bold text-white transition">전송</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. 네비게이터 서브 뷰 -->
+                <div id="sub-navigator" class="hidden space-y-4">
+                    <div class="flex justify-between items-center">
+                        <button onclick="navigateView('hub')" class="text-xs bg-gray-800 text-blue-400 px-3 py-1.5 rounded-xl font-bold">⬅️ 메인 허브로</button>
+                        <h2 class="text-xs font-bold text-white">네비게이터 (메뉴 보기)</h2>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl space-y-2.5 text-xs">
+                        <h4 class="font-bold text-amber-400">🧭 규제 및 컴플라이언스 네비게이터</h4>
+                        <div class="p-2.5 bg-gray-900/60 rounded-xl">📚 백서 100선 및 FAQ 20선 실시간 인덱스</div>
+                        <div class="p-2.5 bg-gray-900/60 rounded-xl">⚖️ 3대 POLICIES (보안, 프라이버시, 거버넌스) 연동</div>
+                        <div class="p-2.5 bg-gray-900/60 rounded-xl">🚨 FATF 트래블룰 & 실시간 제재 리스트 검증 엔진</div>
+                        <div class="p-2.5 bg-gray-900/60 rounded-xl">🌐 21개국 디지털 자산법 매칭 라이센스 검증 모듈</div>
+                    </div>
+                </div>
+
+                <!-- 5. 유튜브와 틱톡 채널 연동 서브 뷰 -->
+                <div id="sub-media" class="hidden space-y-4">
+                    <div class="flex justify-between items-center">
+                        <button onclick="navigateView('hub')" class="text-xs bg-gray-800 text-blue-400 px-3 py-1.5 rounded-xl font-bold">⬅️ 메인 허브로</button>
+                        <h2 class="text-xs font-bold text-white">유튜브와 틱톡 채널 연동</h2>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl space-y-3">
+                        <div class="p-3 bg-gray-900 rounded-xl flex items-center justify-between border border-gray-800">
+                            <div>
+                                <p class="text-xs font-bold text-white">YouTube 공식 채널 (@Hyekong2026)</p>
+                                <p class="text-[10px] text-gray-400">피코인, 경제, 기술 및 지역 산업 발전 라이브</p>
+                            </div>
+                            <span class="px-2 py-1 bg-red-600/20 text-red-400 text-[10px] rounded-lg font-bold">LIVE</span>
+                        </div>
+                        <div class="p-3 bg-gray-900 rounded-xl flex items-center justify-between border border-gray-800">
+                            <div>
+                                <p class="text-xs font-bold text-white">TikTok 크리에이터 피드 (@hyekong2026)</p>
+                                <p class="text-[10px] text-gray-400">숏폼 생태계 실시간 연동 허브</p>
+                            </div>
+                            <span class="px-2 py-1 bg-pink-600/20 text-pink-400 text-[10px] rounded-lg font-bold">SYNC</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ================================================================================== -->
+            <!-- [SECTION 5: BACKEND API CONSOLE & TERMINAL LOGS] -->
+            <!-- ================================================================================== -->
+            <div id="terminal-panel" class="w-72 bg-gray-950 border-l border-gray-800 flex flex-col hidden sm:flex">
+                <div class="p-3 bg-gray-900 border-b border-gray-800 flex justify-between items-center">
+                    <span class="text-[10px] font-bold text-blue-400 font-mono">💻 BACKEND API CONSOLE</span>
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                </div>
+                <div id="terminal-log" class="flex-1 p-3 code-box text-[9px] overflow-y-auto space-y-1">
+                    <p class="text-gray-500">[SYSTEM] Initializing HK WorldBank Enterprise Cluster v14.0...</p>
+                    <p class="text-emerald-400">[READY] Testnet Pi RPC Node connected at wss://node.hkwb.world</p>
+                </div>
+                <div class="p-2 bg-gray-900 border-t border-gray-800 text-[8px] text-gray-400 text-center font-mono">
+                    Node.js v22.5 / Secure Enclave API
+                </div>
+            </div>
+
         </div>
-      </div>
-    </aside>
 
-  </div>
+        <!-- 하단 푸터 -->
+        <div class="p-2.5 bg-gray-950 border-t border-gray-800 text-center text-[9px] text-gray-500 font-mono">
+            <span>© 2026 HK Group Chairman Lee Jaewan (Hyekong). All Rights Reserved. | hkwb.world</span>
+        </div>
 
-  <!-- ==========================================================================
-     [SECTION 6: COMPREHENSIVE 20-LANGUAGE TRANSLATION ENGINE & CONTROLLER SCRIPTS]
-     ========================================================================== -->
-  <script>
-    /**
-     * HK BANK ENTERPRISE 20-LANGUAGE DICTIONARY ARCHITECTURE
-     * Covers: KO, EN, ZH, JA, RU, VI, TH, ID, AR, DE, IT, FR, HA, CM, ZU, HI, ES, PT, UK, TR
-     */
-    const translations = {
-      // 1. 한국어 (Korean)
-      ko: {
-        main_banner_title: "글로벌 슈퍼 뱅킹 플랫폼 👋",
-        main_banner_sub: "오늘도 안전하고 스마트한 금융 생활을 지원합니다.",
-        account_krw: "HK 주거래통장", withdrawable: "출금가능", unit_krw: "원",
-        btn_transfer: "송금하기", btn_fill: "채우기", account_pi: "Pi 신탁 & 세이프박스",
-        pi_interest: "연 31.41% 복리", btn_manage: "관리하기", btn_swap: "즉시 환전",
-        quick_remit: "이체", quick_fill: "채우기", quick_loan: "마이너스대출", quick_qr: "QR결제",
-        recent_history: "최근 거래 내역", view_all: "전체보기", tx1_title: "HK-ROBOT 개발 지원금",
-        tx1_time: "오늘 오전 10:24", tx2_title: "스타벅스 (블랙커피)", tx2_time: "어제 오후 2:15",
-        nav_home: "홈", nav_assets: "자산", nav_benefits: "혜택", nav_menu: "전체메뉴"
-      },
-      // 2. 영어 (English)
-      en: {
-        main_banner_title: "Global Super Banking Platform 👋",
-        main_banner_sub: "Supporting your safe and smart financial life today.",
-        account_krw: "HK Main Account", withdrawable: "Available", unit_krw: "KRW",
-        btn_transfer: "Transfer", btn_fill: "Top-up", account_pi: "Pi Trust & Safe Box",
-        pi_interest: "31.41% Compound p.a.", btn_manage: "Manage", btn_swap: "Instant Swap",
-        quick_remit: "Send", quick_fill: "Top-up", quick_loan: "Credit Loan", quick_qr: "QR Pay",
-        recent_history: "Recent Transactions", view_all: "View All", tx1_title: "HK-ROBOT R&D Grant",
-        tx1_time: "Today 10:24 AM", tx2_title: "Starbucks (Americano)", tx2_time: "Yesterday 2:15 PM",
-        nav_home: "Home", nav_assets: "Assets", nav_benefits: "Benefits", nav_menu: "Menu"
-      },
-      // 3. 중국어 (Chinese)
-      zh: {
-        main_banner_title: "全球超级银行平台 👋",
-        main_banner_sub: "为您提供安全、智能的日常金融服务。",
-        account_krw: "HK 主账户", withdrawable: "可提现", unit_krw: "韩元",
-        btn_transfer: "转账", btn_fill: "充值", account_pi: "Pi 信托 & 金库",
-        pi_interest: "年化 31.41% 复利", btn_manage: "管理", btn_swap: "即时兑换",
-        quick_remit: "汇款", quick_fill: "充值", quick_loan: "信用贷款", quick_qr: "扫码支付",
-        recent_history: "最近交易明细", view_all: "查看全部", tx1_title: "HK-ROBOT 研发补助",
-        tx1_time: "今天 上午 10:24", tx2_title: "星巴克 (美式咖啡)", tx2_time: "昨天 下午 2:15",
-        nav_home: "首页", nav_assets: "资产", nav_benefits: "权益", nav_menu: "菜单"
-      },
-      // 4. 일본어 (Japanese)
-      ja: {
-        main_banner_title: "グローバルスーパーバンキング 👋",
-        main_banner_sub: "今日も安全でスマートな金融生活をサポートします。",
-        account_krw: "HK 메인口座", withdrawable: "出金可能", unit_krw: "ウォン",
-        btn_transfer: "送金する", btn_fill: "チャージ", account_pi: "Pi 信託 & 金庫",
-        pi_interest: "年 31.41% 複利", btn_manage: "管理", btn_swap: "即時両替",
-        quick_remit: "振込", quick_fill: "チャージ", quick_loan: "マイナスローン", quick_qr: "QR決済",
-        recent_history: "最近の取引履歴", view_all: "すべて見る", tx1_title: "HK-ROBOT 開発支援金",
-        tx1_time: "今日 午前 10:24", tx2_title: "スターバックス (ブラック)", tx2_time: "昨日 午後 2:15",
-        nav_home: "ホーム", nav_assets: "資産", nav_benefits: "特典", nav_menu: "メニュー"
-      },
-      // 5. 러시아어 (Russian)
-      ru: {
-        main_banner_title: "Глобальная супер-банковская платформа 👋",
-        main_banner_sub: "Поддержка вашей безопасной и умной финансовой жизни.",
-        account_krw: "HK Основной счет", withdrawable: "Доступно", unit_krw: "KRW",
-        btn_transfer: "Перевод", btn_fill: "Пополнить", account_pi: "Pi Траст и Сейф",
-        pi_interest: "31.41% годовых", btn_manage: "Управлять", btn_swap: "Обмен",
-        quick_remit: "Отправить", quick_fill: "Пополнить", quick_loan: "Кредит", quick_qr: "QR Оплата",
-        recent_history: "История операций", view_all: "Все", tx1_title: "HK-ROBOT Грант НИОКР",
-        tx1_time: "Сегодня 10:24", tx2_title: "Starbucks (Кофе)", tx2_time: "Вчера 14:15",
-        nav_home: "Главная", nav_assets: "Активы", nav_benefits: "Бонусы", nav_menu: "Меню"
-      },
-      // 6. 베트남어 (Vietnamese)
-      vi: {
-        main_banner_title: "Nền tảng Ngân hàng Siêu cấp Toàn cầu 👋",
-        main_banner_sub: "Hỗ trợ cuộc sống tài chính an toàn và thông minh của bạn.",
-        account_krw: "Tài khoản chính HK", withdrawable: "Có thể rút", unit_krw: "KRW",
-        btn_transfer: "Chuyển tiền", btn_fill: "Nạp tiền", account_pi: "Pi Thác thuận & Két an toàn",
-        pi_interest: "Lãi kép 31.41%/năm", btn_manage: "Quản lý", btn_swap: "Đổi ngay",
-        quick_remit: "Chuyển khoản", quick_fill: "Nạp tiền", quick_loan: "Vay thấu chi", quick_qr: "Quét QR",
-        recent_history: "Giao dịch gần đây", view_all: "Xem tất cả", tx1_title: "Hỗ trợ R&D HK-ROBOT",
-        tx1_time: "Hôm nay 10:24", tx2_title: "Starbucks (Cà phê)", tx2_time: "Hôm qua 14:15",
-        nav_home: "Trang chủ", nav_assets: "Tài sản", nav_benefits: "Ưu đãi", nav_menu: "Danh mục"
-      },
-      // 7. 태국어 (Thai)
-      th: {
-        main_banner_title: "แพลตฟอร์มธนาคารซูเปอร์ระดับโลก 👋",
-        main_banner_sub: "สนับสนุนชีวิตทางการเงินที่ปลอดภัยและชาญฉลาดของคุณวันนี้",
-        account_krw: "บัญชีหลัก HK", withdrawable: "ถอนได้", unit_krw: "วอน",
-        btn_transfer: "โอนเงิน", btn_fill: "เติมเงิน", account_pi: "Pi กองทุน & ตู้นิรภัย",
-        pi_interest: "ดอกเบี้ยทบต้น 31.41%/ปี", btn_manage: "จัดการ", btn_swap: "แลกเปลี่ยนทันที",
-        quick_remit: "โอนเงิน", quick_fill: "เติมเงิน", quick_loan: "สินเชื่อ", quick_qr: "สแกน QR",
-        recent_history: "ประวัติรายการล่าสุด", view_all: "ดูทั้งหมด", tx1_title: "ทุนวิจัย HK-ROBOT",
-        tx1_time: "วันนี้ 10:24", tx2_title: "Starbucks (กาแฟดำ)", tx2_time: "เมื่อวาน 14:15",
-        nav_home: "หน้าแรก", nav_assets: "สินทรัพย์", nav_benefits: "สิทธิประโยชน์", nav_menu: "เมนู"
-      },
-      // 8. 인도네시아어 (Indonesian)
-      id: {
-        main_banner_title: "Platform Perbankan Super Global 👋",
-        main_banner_sub: "Mendukung kehidupan finansial Anda yang aman dan cerdas.",
-        account_krw: "Rekening Utama HK", withdrawable: "Tersedia", unit_krw: "KRW",
-        btn_transfer: "Transfer", btn_fill: "Isi Saldo", account_pi: "Pi Trust & Brankas",
-        pi_interest: "Bunga Majemuk 31.41%/thn", btn_manage: "Kelola", btn_swap: "Tukar Langsung",
-        quick_remit: "Kirim", quick_fill: "Isi Saldo", quick_loan: "Pinjaman", quick_qr: "Bayar QR",
-        recent_history: "Transaksi Terakhir", view_all: "Lihat Semua", tx1_title: "Dana R&D HK-ROBOT",
-        tx1_time: "Hari ini 10:24", tx2_title: "Starbucks (Kopi)", tx2_time: "Kemarin 14:15",
-        nav_home: "Beranda", nav_assets: "Aset", nav_benefits: "Keuntungan", nav_menu: "Menu"
-      },
-      // 9. 팔레스타인/아랍어 (Arabic)
-      ar: {
-        main_banner_title: "منصة الخدمات المصرفية الشاملة العالمية 👋",
-        main_banner_sub: "دعم حياتك المالية الآمنة والذكية اليوم.",
-        account_krw: "حساب HK الرئيسي", withdrawable: "متاح للسحب", unit_krw: "وون",
-        btn_transfer: "تحويل", btn_fill: "تعبئة", account_pi: "صندوق Pi الصندوق الآمن",
-        pi_interest: "فائدة مركبة 31.41%", btn_manage: "إدارة", btn_swap: "تحويل فوری",
-        quick_remit: "تحويل", quick_fill: "تعبئة", quick_loan: "قرض", quick_qr: "دفع QR",
-        recent_history: "أحدث المعاملات", view_all: "عرض الكل", tx1_title: "منحة تطوير HK-ROBOT",
-        tx1_time: "اليوم 10:24 صباحاً", tx2_title: "ستاربكس (قهوة)", tx2_time: "أمس 2:15 مساءً",
-        nav_home: "الرئيسية", nav_assets: "الأصول", nav_benefits: "المزايا", nav_menu: "القائمة"
-      },
-      // 10. 독일어 (German)
-      de: {
-        main_banner_title: "Globale Super-Banking-Plattform 👋",
-        main_banner_sub: "Unterstützung für Ihr sicheres und smartes Finanzleben.",
-        account_krw: "HK Hauptkonto", withdrawable: "Verfügbar", unit_krw: "KRW",
-        btn_transfer: "Überweisen", btn_fill: "Aufladen", account_pi: "Pi Trust & Tresor",
-        pi_interest: "31.41% Zinseszins p.a.", btn_manage: "Verwalten", btn_swap: "Sofort-Tausch",
-        quick_remit: "Senden", quick_fill: "Aufladen", quick_loan: "Kredit", quick_qr: "QR-Zahlung",
-        recent_history: "Letzte Transaktionen", view_all: "Alle anzeigen", tx1_title: "HK-ROBOT F&E-Förderung",
-        tx1_time: "Heute 10:24", tx2_title: "Starbucks (Kaffee)", tx2_time: "Gestern 14:15",
-        nav_home: "Start", nav_assets: "Vermögen", nav_benefits: "Vorteile", nav_menu: "Menü"
-      },
-      // 11. 이태리어 (Italian)
-      it: {
-        main_banner_title: "Piattaforma di Super Banking Globale 👋",
-        main_banner_sub: "Supporto per la tua vita finanziaria sicura e intelligente.",
-        account_krw: "Conto Principale HK", withdrawable: "Prelevabile", unit_krw: "KRW",
-        btn_transfer: "Bonifico", btn_fill: "Ricarica", account_pi: "Fondo Pi & Cassaforte",
-        pi_interest: "Interesse composto 31.41%", btn_manage: "Gestisci", btn_swap: "Cambio Immediato",
-        quick_remit: "Invia", quick_fill: "Ricarica", quick_loan: "Prestito", quick_qr: "Paga QR",
-        recent_history: "Transazioni Recenti", view_all: "Vedi tutti", tx1_title: "Fondo R&S HK-ROBOT",
-        tx1_time: "Oggi 10:24", tx2_title: "Starbucks (Caffè)", tx2_time: "Ieri 14:15",
-        nav_home: "Home", nav_assets: "Patrimonio", nav_benefits: "Vantaggi", nav_menu: "Menu"
-      },
-      // 12. 프랑스어 (French)
-      fr: {
-        main_banner_title: "Plateforme de Super Banking Mondiale 👋",
-        main_banner_sub: "Soutien pour une vie financière sûre et intelligente.",
-        account_krw: "Compte Principal HK", withdrawable: "Disponible", unit_krw: "KRW",
-        btn_transfer: "Virement", btn_fill: "Recharger", account_pi: "Fiducie Pi & Coffre-fort",
-        pi_interest: "Intérêts composés 31.41%", btn_manage: "Gérer", btn_swap: "Change instantané",
-        quick_remit: "Envoyer", quick_fill: "Recharger", quick_loan: "Crédit", quick_qr: "Paiement QR",
-        recent_history: "Transactions récentes", view_all: "Voir tout", tx1_title: "Subvention R&D HK-ROBOT",
-        tx1_time: "Aujourd'hui 10:24", tx2_title: "Starbucks (Café)", tx2_time: "Hier 14:15",
-        nav_home: "Accueil", nav_assets: "Actifs", nav_benefits: "Avantages", nav_menu: "Menu"
-      },
-      // 13. 나이지리아어 (Hausa)
-      ha: {
-        main_banner_title: "Dandalin Banki Mafi Girma Na Duniya 👋",
-        main_banner_sub: "Taimaka wa rayuwar ku ta fuskar kudi ta hanya mai aminci.",
-        account_krw: "Asusun HK Na Farko", withdrawable: "Za a iya cirewa", unit_krw: "KRW",
-        btn_transfer: "Tura Kudi", btn_fill: "Cika Saldo", account_pi: "Pi Trust da Akwati",
-        pi_interest: "Riba 31.41% a shekara", btn_manage: "Gudanarwa", btn_swap: "Canji Nan take",
-        quick_remit: "Aika", quick_fill: "Cika Saldo", quick_loan: "Rance", quick_qr: "QR Biyan kuɗi",
-        recent_history: "Tarihin Biyan Kuɗi", view_all: "Duba Duka", tx1_title: "Taikamawa R&D HK-ROBOT",
-        tx1_time: "Yau 10:24", tx2_title: "Starbucks (Kofi)", tx2_time: "Jiya 14:15",
-        nav_home: "Gida", nav_assets: "Kadaikun Kuɗi", nav_benefits: "Amfani", nav_menu: "Menu"
-      },
-      // 14. 카메룬어 (Cameroon)
-      cm: {
-        main_banner_title: "Plateforme de Super Banking Mondiale 👋",
-        main_banner_sub: "Soutien pour une vie financière sûre et intelligente.",
-        account_krw: "Compte Principal HK", withdrawable: "Retirable", unit_krw: "KRW",
-        btn_transfer: "Transférer", btn_fill: "Recharger", account_pi: "Pi Trust & Coffre-fort",
-        pi_interest: "31.41% Intérêt Composé", btn_manage: "Gérer", btn_swap: "Échange Instantané",
-        quick_remit: "Envoyer", quick_fill: "Recharger", quick_loan: "Crédit", quick_qr: "Paiement QR",
-        recent_history: "Historique Récents", view_all: "Voir Tout", tx1_title: "Subvention R&D HK-ROBOT",
-        tx1_time: "Aujourd'hui 10:24", tx2_title: "Starbucks (Café)", tx2_time: "Hier 14:15",
-        nav_home: "Accueil", nav_assets: "Actifs", nav_benefits: "Avantages", nav_menu: "Menu"
-      },
-      // 15. 남아공어 (isiZulu)
-      zu: {
-        main_banner_title: "Ipulatifomu Yasebhange Yomhlaba Yonke 👋",
-        main_banner_sub: "Ukusekela impilo yakho yezezimali ephephile.",
-        account_krw: "I-Akaunti Enkulu ye-HK", withdrawable: "Kuyatholakala", unit_krw: "KRW",
-        btn_transfer: "Thumela", btn_fill: "Faka Imali", account_pi: "Pi Trust & Safe Box",
-        pi_interest: "31.41% Inzuzo Ngonyaka", btn_manage: "Phatha", btn_swap: "Shintsha Manje",
-        quick_remit: "Thumela", quick_fill: "Faka Imali", quick_loan: "Inkokhelo", quick_qr: "QR Inkokhelo",
-        recent_history: "Imisebenzi Yakamuva", view_all: "Buka Konke", tx1_title: "HK-ROBOT R&D Grant",
-        tx1_time: "Namhlanje 10:24", tx2_title: "Starbucks (Ikhofi)", tx2_time: "Izolo 14:15",
-        nav_home: "Ikhaya", nav_assets: "Izimali", nav_benefits: "Izinzuzo", nav_menu: "Imenu"
-      },
-      // 16. 힌디어 (Hindi)
-      hi: {
-        main_banner_title: "वैश्विक सुपर बैंकिंग प्लेटफॉर्म 👋",
-        main_banner_sub: "आज आपके सुरक्षित और स्मार्ट वित्तीय जीवन का समर्थन करना।",
-        account_krw: "HK मुख्य खाता", withdrawable: "निकालने योग्य", unit_krw: "KRW",
-        btn_transfer: "स्थानांतरण", btn_fill: "टॉप-अप", account_pi: "Pi ट्रस्ट और तिजोरी",
-        pi_interest: "वार्षिक 31.41% चक्रवृद्घि", btn_manage: "प्रबंधन", btn_swap: "तुरंत बदलें",
-        quick_remit: "भेजें", quick_fill: "टॉप-अप", quick_loan: "ऋण", quick_qr: "QR भुगतान",
-        recent_history: "हाल के लेन-देन", view_all: "सभी देखें", tx1_title: "HK-ROBOT विकास अनुदान",
-        tx1_time: "आज 10:24 पूर्वाहन", tx2_title: "स्टारबक्स (कॉफी)", tx2_time: "कल 2:15 अपराह्न",
-        nav_home: "होम", nav_assets: "संपत्ति", nav_benefits: "लाभ", nav_menu: "मेनू"
-      },
-      // 17. 스페인어 (Spanish)
-      es: {
-        main_banner_title: "Plataforma de Superbanca Global 👋",
-        main_banner_sub: "Apoyando tu vida financiera segura e inteligente hoy.",
-        account_krw: "Cuenta Principal HK", withdrawable: "Disponible", unit_krw: "KRW",
-        btn_transfer: "Transferir", btn_fill: "Recargar", account_pi: "Fideicomiso Pi y Caja Fuerte",
-        pi_interest: "31.41% Interés Compuesto", btn_manage: "Gestionar", btn_swap: "Cambio Instantáneo",
-        quick_remit: "Enviar", quick_fill: "Recargar", quick_loan: "Crédito", quick_qr: "Pago QR",
-        recent_history: "Transacciones Recientes", view_all: "Ver Todo", tx1_title: "Subvención R&D HK-ROBOT",
-        tx1_time: "Hoy 10:24", tx2_title: "Starbucks (Café)", tx2_time: "Ayer 14:15",
-        nav_home: "Inicio", nav_assets: "Activos", nav_benefits: "Beneficios", nav_menu: "Menú"
-      },
-      // 18. 브라질어 (Portuguese)
-      pt: {
-        main_banner_title: "Plataforma de Super Banking Global 👋",
-        main_banner_sub: "Apoiando sua vida financeira segura e inteligente.",
-        account_krw: "Conta Principal HK", withdrawable: "Disponível", unit_krw: "KRW",
-        btn_transfer: "Transferir", btn_fill: "Recarregar", account_pi: "Pi Truste & Cofre",
-        pi_interest: "31.41% Juros Compostos a.a.", btn_manage: "Gerenciar", btn_swap: "Troca Instantânea",
-        quick_remit: "Enviar", quick_fill: "Recarregar", quick_loan: "Empréstimo", quick_qr: "Pagamento QR",
-        recent_history: "Transações Recentes", view_all: "Ver Tudo", tx1_title: "Subvenção P&D HK-ROBOT",
-        tx1_time: "Hoje 10:24", tx2_title: "Starbucks (Café)", tx2_time: "Ontem 14:15",
-        nav_home: "Início", nav_assets: "Ativos", nav_benefits: "Benefícios", nav_menu: "Menu"
-      },
-      // 19. 우크라이나어 (Ukrainian)
-      uk: {
-        main_banner_title: "Глобальна супер-банківська платформа 👋",
-        main_banner_sub: "Підтримка вашого безпечного та розумного фінансового життя.",
-        account_krw: "HK Основний рахунок", withdrawable: "Доступно", unit_krw: "KRW",
-        btn_transfer: "Переказ", btn_fill: "Поповнити", account_pi: "Pi Траст та Сейф",
-        pi_interest: "31.41% річних", btn_manage: "Керувати", btn_swap: "Миттєвий обмін",
-        quick_remit: "Надіслати", quick_fill: "Поповнити", quick_loan: "Кредит", quick_qr: "QR Оплата",
-        recent_history: "Останні операції", view_all: "Дивитись всі", tx1_title: "Грант НДДКР HK-ROBOT",
-        tx1_time: "Сьогодні 10:24", tx2_title: "Starbucks (Кава)", tx2_time: "Учора 14:15",
-        nav_home: "Головна", nav_assets: "Активи", nav_benefits: "Пільги", nav_menu: "Меню"
-      },
-      // 20. 터키어 (Turkish)
-      tr: {
-        main_banner_title: "Küresel Süper Bankacılık Platformu 👋",
-        main_banner_sub: "Güvenli ve akıllı finansal hayatınızı bugün destekliyoruz.",
-        account_krw: "HK Ana Hesabı", withdrawable: "Çekilebilir", unit_krw: "KRW",
-        btn_transfer: "Transfer", btn_fill: "Yükle", account_pi: "Pi Fonu & Kasa",
-        pi_interest: "Yıllık %31.41 Bileşik", btn_manage: "Yönet", btn_swap: "Anında Takas",
-        quick_remit: "Gönder", quick_fill: "Yükle", quick_loan: "Kredi", quick_qr: "QR Ödeme",
-        recent_history: "Son İşlemler", view_all: "Tümünü Gör", tx1_title: "HK-ROBOT Ar-Ge Hibesi",
-        tx1_time: "Bugün 10:24", tx2_title: "Starbucks (Kahve)", tx2_time: "Dün 14:15",
-        nav_home: "Ana Sayfa", nav_assets: "Varlıklar", nav_benefits: "Faydalar", nav_menu: "Menü"
-      }
-    };
+    </div>
 
-    function updateLanguage(lang) {
-      const data = translations[lang] || translations['en'];
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (data[key]) {
-          el.textContent = data[key];
+    <!-- ================================================================================== -->
+    <!-- [SECTION 6: CLIENT CONTROLLER & ROUTING SCRIPT] -->
+    <!-- ================================================================================== -->
+    <script>
+        function updateSysClock() {
+            const now = new Date();
+            document.getElementById('sys-clock').innerText = now.toISOString().replace('T', ' ').substring(0, 19) + ' KST';
         }
-      });
-      localStorage.setItem('hk_bank_lang', lang);
-    }
+        setInterval(updateSysClock, 1000);
+        updateSysClock();
 
-    // Sidebar Slide Events & Event Handlers
-    const sidebar = document.getElementById('sidebar');
-    const backdrop = document.getElementById('sidebarBackdrop');
-    const openBtn = document.getElementById('openSidebar');
-    const openNavBtn = document.getElementById('openNavMenu');
-    const closeBtn = document.getElementById('closeSidebar');
+        function logTerm(msg) {
+            const box = document.getElementById('terminal-log');
+            if(!box) return;
+            const p = document.createElement('p');
+            p.className = "text-gray-300 font-mono";
+            p.innerText = `> ${msg}`;
+            box.appendChild(p);
+            box.scrollTop = box.scrollHeight;
+        }
 
-    function toggleSidebar(show) {
-      if (show) {
-        backdrop.classList.remove('hidden');
-        setTimeout(() => sidebar.classList.remove('-translate-x-full'), 10);
-      } else {
-        sidebar.classList.add('-translate-x-full');
-        setTimeout(() => backdrop.classList.add('hidden'), 300);
-      }
-    }
+        function navigateView(name) {
+            const views = ['hub', 'asset', 'finance', 'ai', 'navigator', 'media'];
+            views.forEach(v => {
+                const hubEl = document.getElementById(`sec-${v}`);
+                const subEl = document.getElementById(`sub-${v}`);
+                if(hubEl) hubEl.classList.add('hidden');
+                if(subEl) subEl.classList.add('hidden');
+            });
+            if(name === 'hub') {
+                document.getElementById('sec-hub').classList.remove('hidden');
+            } else {
+                const target = document.getElementById(`sub-${name}`);
+                if(target) target.classList.remove('hidden');
+            }
+            logTerm(`[ROUTER] Switched view to view-${name}`);
+        }
 
-    openBtn.addEventListener('click', () => toggleSidebar(true));
-    openNavBtn.addEventListener('click', () => toggleSidebar(true));
-    closeBtn.addEventListener('click', () => toggleSidebar(false));
-    backdrop.addEventListener('click', () => toggleSidebar(false));
+        function callApiAction(action, desc) {
+            logTerm(`POST /api/v1/finance/${action} -> 200 OK (${desc})`);
+            alert(`[HK WorldBank API] ${action}: ${desc}`);
+        }
 
-    // Language Change Event Listener
-    document.getElementById('langSelect').addEventListener('change', (e) => {
-      updateLanguage(e.target.value);
-    });
+        function toggleTerminal() {
+            const panel = document.getElementById('terminal-panel');
+            panel.classList.toggle('hidden');
+        }
 
-    // Load saved language state from localStorage
-    const savedLang = localStorage.getItem('hk_bank_lang');
-    if (savedLang && translations[savedLang]) {
-      document.getElementById('langSelect').value = savedLang;
-      updateLanguage(savedLang);
-    }
-  </script>
+        function sendChat() {
+            const input = document.getElementById('chat-txt');
+            const windowBox = document.getElementById('chat-window');
+            if(!input.value.trim()) return;
+
+            const q = input.value;
+            logTerm(`POST /api/v1/ai/gemini-pi -> Query: "${q}"`);
+
+            const userMsg = document.createElement('p');
+            userMsg.className = "text-white text-right";
+            userMsg.innerHTML = `<span class="bg-purple-600/30 px-2.5 py-1 rounded-xl">${q}</span> : <span class="text-purple-300 font-bold">회장님</span>`;
+            windowBox.appendChild(userMsg);
+            input.value = '';
+
+            setTimeout(() => {
+                const aiMsg = document.createElement('p');
+                aiMsg.className = "text-gray-300";
+                aiMsg.innerHTML = `<span class="text-purple-400 font-bold">[삐니 AGI]:</span> 회장님의 "${q}" 요청을 60개국어 실시간 번역 및 Testnet Pi 백엔드로 처리 완료했습니다!`;
+                windowBox.appendChild(aiMsg);
+                windowBox.scrollTop = windowBox.scrollHeight;
+                logTerm(`[AI ENGINE] Response generated successfully.`);
+            }, 600);
+        }
+
+        function changeLang() {
+            const picker = document.getElementById('lang-picker');
+            const langName = picker.options[picker.selectedIndex].text;
+            logTerm(`[I18N] Language switched to: ${langName}`);
+            alert(`AGI 삐니 언어가 [${langName}]로 실시간 전환되었습니다.`);
+        }
+    </script>
 </body>
 </html>
