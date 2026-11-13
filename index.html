@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HK BANK - Web2 Digital Banking & Hardware Convergence Platform (Master v5.0)</title>
+    <title>HK WorldBank - Deep Purple Web3 Financial Network (Master v5.0)</title>
+    <!-- Pi Network SDK 연동 -->
+    <script src="https://sdk.minepi.com/pi-sdk.js"></script>
     <style>
         /* ==========================================================
-         * HK BANK Web2 Digital Bank Master Architecture v5.0 (Full Edition)
+         * HK WorldBank Web3 Digital Bank Master Architecture (찐보라 에디션)
          * System Architect: Chairman Hyekong Lee (HK Group)
-         * Purpose: Enterprise Web2 Digital Banking & Hardware Convergence Platform
+         * Platform Domain: hkwb.world | Pi Protocol: pi://hkwb.world
          * ========================================================== */
         :root {
-            --bank-primary: #0f172a;
-            --bank-accent: #2563eb;
-            --bank-success: #10b981;
-            --bank-bg: #f8fafc;
+            --primary-color: #3b0764; /* 찐보라 메인 톤 */
+            --primary-hover: #4c1d95;
+            --accent-purple: #7c3aed;
+            --accent-green: #10b981;
+            --light-bg: #f8fafc;
             --card-bg: #ffffff;
             --border-color: #e2e8f0;
             --text-main: #1e293b;
@@ -29,38 +32,38 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--bank-bg);
+            background-color: var(--light-bg);
             color: var(--text-main);
             line-height: 1.6;
         }
 
-        /* 상단 웹2 디지털 뱅크 헤더 레이아웃 */
-        .bank-header {
-            background: var(--bank-primary);
+        /* 상단 Web3 브랜드 헤더 레이아웃 (찐보라 바탕) */
+        .main-header {
+            background: var(--primary-color);
             color: #ffffff;
             padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 15px rgba(59, 7, 100, 0.25);
         }
 
-        .logo-area {
+        .logo-container {
             display: flex;
             align-items: center;
             gap: 15px;
         }
 
-        .logo-area h1 {
+        .logo-container h1 {
             margin: 0;
             font-size: 1.8rem;
             font-weight: 800;
             letter-spacing: -0.5px;
         }
 
-        .badge-web2 {
+        .badge {
             font-size: 0.8rem;
-            background: #3b82f6;
+            background: var(--accent-purple);
             color: #fff;
             padding: 5px 12px;
             border-radius: 6px;
@@ -69,25 +72,25 @@
             letter-spacing: 0.5px;
         }
 
-        .user-nav {
+        .nav-menu {
             display: flex;
             gap: 15px;
             align-items: center;
         }
 
-        .user-nav select {
+        .nav-menu select {
             padding: 9px 14px;
             border-radius: 6px;
-            border: 1px solid #475569;
-            background: #1e293b;
+            border: 1px solid #6d28d9;
+            background: #2e1065;
             color: #fff;
             font-size: 0.95rem;
             cursor: pointer;
             outline: none;
         }
 
-        .auth-btn {
-            background: var(--bank-accent);
+        .wallet-btn {
+            background: var(--accent-purple);
             color: #fff;
             border: none;
             padding: 10px 20px;
@@ -98,60 +101,71 @@
             transition: background 0.2s, transform 0.1s;
         }
 
-        .auth-btn:hover {
-            background: #1d4ed8;
+        .wallet-btn:hover {
+            background: #6d28d9;
             transform: translateY(-1px);
         }
 
-        /* 대시보드 컨테이너 레이아웃 */
-        .dashboard-wrapper {
+        /* 대시보드 컨테이너 */
+        .dashboard-container {
             max-width: 1300px;
             margin: 35px auto;
             padding: 0 25px;
         }
 
-        /* [계좌 요약 및 잔액 카드 섹션] */
-        .account-summary-grid {
+        /* [Web3 파이 코인 및 예치 대시보드 카운터 (찐보라 그라데이션)] */
+        .web3-vault-summary {
             display: grid;
             grid-template-columns: 2fr 1fr;
             gap: 25px;
             margin-bottom: 35px;
         }
 
-        .main-account-card {
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+        .vault-main-card {
+            background: linear-gradient(135deg, #3b0764 0%, #581c87 100%);
             color: #fff;
             padding: 35px;
             border-radius: 14px;
-            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.2);
+            box-shadow: 0 10px 25px rgba(59, 7, 100, 0.25);
         }
 
-        .main-account-card h2 {
+        .vault-main-card h2 {
             margin: 0 0 10px 0;
             font-size: 1.15rem;
-            color: #93c5fd;
+            color: #e9d5ff;
         }
 
-        .account-number {
-            font-size: 1rem;
-            color: #cbd5e1;
+        .vault-address {
+            font-size: 0.95rem;
+            color: #d8b4fe;
             margin-bottom: 20px;
-            letter-spacing: 0.5px;
+            word-break: break-all;
         }
 
-        .balance-amount {
+        .vault-balance {
             font-size: 2.6rem;
             font-weight: 800;
-            margin-bottom: 25px;
-            letter-spacing: -1px;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
         }
 
-        .account-actions {
+        .apy-badge {
+            display: inline-block;
+            background: var(--accent-green);
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .vault-actions {
             display: flex;
             gap: 12px;
         }
 
-        .action-btn {
+        .vault-btn {
             background: rgba(255, 255, 255, 0.15);
             color: #fff;
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -163,51 +177,11 @@
             transition: background 0.2s;
         }
 
-        .action-btn:hover {
+        .vault-btn:hover {
             background: rgba(255, 255, 255, 0.3);
         }
 
-        /* [퀵 메뉴 및 서비스 카드] */
-        .quick-services-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 30px;
-            border-radius: 14px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.04);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .quick-services-card h3 {
-            margin: 0 0 15px 0;
-            font-size: 1.2rem;
-            color: var(--bank-primary);
-        }
-
-        .service-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .service-item {
-            background: #f1f5f9;
-            padding: 12px 18px;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #334155;
-            cursor: pointer;
-            transition: background 0.2s, color 0.2s;
-        }
-
-        .service-item:hover {
-            background: #e2e8f0;
-            color: var(--bank-accent);
-        }
-
-        /* [신규 1열 하드웨어 및 융합 제어 모듈 섹션] */
+        /* [1열 전면 배치 하드웨어 연동 섹션] */
         .hardware-row-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -216,11 +190,11 @@
         }
 
         .hw-card {
-            border: 2px solid var(--bank-accent);
+            border: 2px solid var(--accent-purple);
             padding: 25px;
             border-radius: 12px;
-            background: #eff6ff;
-            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.1);
+            background: #f3e8ff;
+            box-shadow: 0 6px 15px rgba(124, 58, 237, 0.1);
             transition: transform 0.2s;
         }
 
@@ -228,25 +202,30 @@
             transform: translateY(-3px);
         }
 
+        .hw-card .hw-icon {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
         .hw-card h3 {
-            margin: 0 0 8px 0;
-            color: #1e40af;
-            font-size: 1.2rem;
+            margin: 0 0 10px 0;
+            color: #581c87;
+            font-size: 1.25rem;
             font-weight: 700;
         }
 
         .hw-card p {
             font-size: 0.95rem;
-            color: #334155;
+            color: #4b5563;
             margin: 0 0 18px 0;
             line-height: 1.5;
         }
 
         .hw-card button {
-            background: var(--bank-accent);
+            background: var(--accent-purple);
             color: #fff;
             border: none;
-            padding: 10px 16px;
+            padding: 10px 18px;
             border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
@@ -255,44 +234,79 @@
         }
 
         .hw-card button:hover {
-            background: #1d4ed8;
+            background: #6d28d9;
         }
 
-        /* [웹2 디지털 뱅크 핵심 금융 상품 그리드] */
-        .web2-features-grid {
+        /* [10대 핵심 스마트 컨트랙트 그리드 레이어] */
+        .smart-contracts-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
             margin-bottom: 35px;
         }
 
-        .feature-box {
+        .sc-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            padding: 25px 20px;
-            border-radius: 12px;
+            padding: 20px 15px;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.04);
             text-align: center;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.03);
             transition: transform 0.2s, border-color 0.2s;
         }
 
-        .feature-box:hover {
+        .sc-card:hover {
             transform: translateY(-2px);
-            border-color: var(--bank-accent);
+            border-color: var(--accent-purple);
         }
 
-        .feature-box h3 {
-            font-size: 1.1rem;
-            margin: 10px 0 8px 0;
-            color: #1e293b;
+        .sc-card .sc-icon {
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+        }
+
+        .sc-card h3 {
+            font-size: 1rem;
+            margin: 6px 0;
+            color: #334155;
             font-weight: 700;
         }
 
-        .feature-box p {
-            font-size: 0.85rem;
+        .sc-card p {
+            font-size: 0.8rem;
             color: var(--text-sub);
             margin: 0;
-            line-height: 1.4;
+        }
+
+        /* [리더십 및 경영진 섹션] */
+        .founder-section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 25px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.04);
+        }
+
+        .founder-section h2 {
+            margin: 0 0 6px 0;
+            font-size: 1.15rem;
+            color: var(--accent-purple);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .founder-section h3 {
+            margin: 0 0 12px 0;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+        }
+
+        .founder-section p {
+            margin: 0;
+            color: var(--text-sub);
+            font-size: 1rem;
+            line-height: 1.5;
         }
 
         /* [AGI 삐니 컨시어지 챗봇 레이어] */
@@ -308,7 +322,7 @@
         .agi-section h2 {
             margin: 0 0 15px 0;
             font-size: 1.3rem;
-            color: var(--bank-primary);
+            color: var(--primary-color);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -331,7 +345,7 @@
         }
 
         .chat-message.bini {
-            color: #0369a1;
+            color: #7c3aed;
             font-weight: 500;
         }
 
@@ -356,12 +370,12 @@
         }
 
         .chat-input-row input:focus {
-            border-color: var(--bank-accent);
+            border-color: var(--accent-purple);
         }
 
         .send-btn {
             padding: 14px 28px;
-            background: var(--bank-primary);
+            background: var(--primary-color);
             color: #fff;
             border: none;
             border-radius: 8px;
@@ -372,145 +386,202 @@
         }
 
         .send-btn:hover {
-            background: #1e293b;
+            background: #4c1d95;
         }
 
-        /* 반응형 모바일 최적화 레이아웃 */
         @media (max-width: 1024px) {
-            .account-summary-grid { grid-template-columns: 1fr; }
+            .web3-vault-summary { grid-template-columns: 1fr; }
             .hardware-row-grid { grid-template-columns: 1fr; }
-            .web2-features-grid { grid-template-columns: repeat(2, 1fr); }
-            .bank-header { padding: 15px 20px; flex-direction: column; gap: 15px; align-items: flex-start; }
-            .user-nav { width: 100%; justify-content: space-between; }
+            .smart-contracts-grid { grid-template-columns: repeat(2, 1fr); }
+            .main-header { padding: 15px 20px; flex-direction: column; gap: 15px; align-items: flex-start; }
+            .nav-menu { width: 100%; justify-content: space-between; }
         }
     </style>
 </head>
 <body>
-    <!-- 상단 웹2 디지털 뱅크 헤더 -->
-    <header class="bank-header">
-        <div class="logo-area">
-            <h1>HK BANK</h1>
-            <span class="badge-web2">Web2 Digital Banking Core</span>
+    <!-- 상단 Web3 브랜드 헤더 (찐보라) -->
+    <header class="main-header">
+        <div class="logo-container">
+            <h1 id="txt_brand">HK WorldBank</h1>
+            <span class="badge">Web3 Deep Purple Edition v5.0</span>
         </div>
-        <nav class="user-nav">
+        <nav class="nav-menu">
             <select id="langSelect" onchange="changeLanguage(this.value)">
                 <option value="ko">한국어 (Korean)</option>
                 <option value="en">English</option>
+                <option value="ja">日本語 (Japanese)</option>
                 <option value="zh">中文 (Chinese)</option>
             </select>
-            <button id="authBtn" class="auth-btn" onclick="authenticateWeb2User()">공동인증 / 간편로그인</button>
+            <button id="connectBtn" class="wallet-btn" onclick="connectPiWallet()">Connect Pi Wallet</button>
         </nav>
     </header>
 
-    <main class="dashboard-wrapper">
-        <!-- [계좌 요약 및 퀵 서비스 그리드] -->
-        <section class="account-summary-grid">
-            <div class="main-account-card">
-                <h2>회장 혜공 이재완님의 주거래 통장</h2>
-                <div class="account-number">HK-BANK 110-2026-033100 (원화 / KRW)</div>
-                <div id="balanceDisplay" class="balance-amount">₩ 1,250,000,000</div>
-                <div class="account-actions">
-                    <button class="action-btn" onclick="openTransferModal()">즉시 이체</button>
-                    <button class="action-btn" onclick="openDepositModal()">예금 / 적금 가입</button>
-                    <button class="action-btn" onclick="openHistoryModal()">거래 내역 조회</button>
+    <main class="dashboard-container">
+        <!-- [Web3 예치 및 실시간 APY 카운터 대시보드] -->
+        <section class="web3-vault-summary">
+            <div class="vault-main-card">
+                <h2>회장 혜공 이재완님의 Web3 메인 신탁 지갑</h2>
+                <div class="vault-address">지갑 주소: GBHKWORLD...314159265358979 (Pi Mainnet)</div>
+                <div class="apy-badge">UBI 복리 연 31.41% APY 가동 중</div>
+                <div id="piBalanceDisplay" class="vault-balance">1,000,000.000000 π</div>
+                <div class="vault-actions">
+                    <button class="vault-btn" onclick="triggerWeb3Transfer()">온체인 빠른 송금</button>
+                    <button class="vault-btn" onclick="triggerWeb3Staking()">UBI 스테이킹 예치</button>
+                    <button class="vault-btn" onclick="triggerWeb3Swap()">DEX 실시간 스왑</button>
                 </div>
             </div>
             
-            <div class="quick-services-card">
-                <h3>디지털 뱅크 퀵 서비스</h3>
-                <div class="service-list">
-                    <div class="service-item" onclick="alert('오픈뱅킹 계좌 통합조회가 완료되었습니다, 형님.')">오픈뱅킹 통합조회</div>
-                    <div class="service-item" onclick="alert('자동이체 관리 센터로 이동합니다.')">자동이체 / 지로 납부</div>
-                    <div class="service-item" onclick="alert('외화 환전 서비스가 대기 중입니다.')">실시간 환전 및 외화예금</div>
+            <div style="background: var(--card-bg); border: 1px solid var(--border-color); padding: 30px; border-radius: 14px; box-shadow: 0 3px 10px rgba(0,0,0,0.04); display: flex; flex-direction: column; justify-content: space-between;">
+                <h3 style="margin: 0 0 15px 0; font-size: 1.2rem; color: var(--primary-color);">Web3 노드 상태</h3>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div style="background: #f3e8ff; padding: 12px 18px; border-radius: 8px; font-size: 0.95rem; font-weight: 600; color: #581c87;">메인넷 검증 노드: ONLINE</div>
+                    <div style="background: #f3e8ff; padding: 12px 18px; border-radius: 8px; font-size: 0.95rem; font-weight: 600; color: #581c87;">지구촌 순이익 환원율: 30.0%</div>
+                    <div style="background: #f3e8ff; padding: 12px 18px; border-radius: 8px; font-size: 0.95rem; font-weight: 600; color: #581c87;">경주 컨트롤 타워: 165층 연결</div>
                 </div>
             </div>
         </section>
 
-        <!-- [신규 1열 하드웨어 및 융합 제어 모듈] -->
+        <!-- [신규 1열 전면 배치 하드웨어 연동 섹션] -->
         <section class="hardware-row-grid">
             <div class="hw-card">
-                <h3>🤖 로봇-앱연결</h3>
-                <p>휴머노이드 로봇 인프라 제어 및 은행 자산 실시간 연동</p>
-                <button onclick="triggerHwSync('로봇')">상태 점검</button>
+                <div class="hw-icon">🤖</div>
+                <h3>로봇-앱연결</h3>
+                <p>휴머노이드 로봇 인프라 제어 및 실시간 온체인 결제 연동</p>
+                <button onclick="triggerRobotSync()">연결 및 상태점검</button>
             </div>
             <div class="hw-card">
-                <h3>👓 안경폰-앱연결</h3>
-                <p>AR 스마트 글래스 기반 생체 인증 및 무터치 뱅킹 승인</p>
-                <button onclick="triggerHwSync('안경폰')">AR 동기화</button>
+                <div class="hw-icon">👓</div>
+                <h3>안경폰-앱연결</h3>
+                <p>AR 글래스 디스플레이 인터페이스 및 무터치 생체 서명</p>
+                <button onclick="triggerGlassesSync()">AR 디스플레이 동기화</button>
             </div>
             <div class="hw-card">
-                <h3>🚁 UAM-앱연결</h3>
-                <p>도심항공모빌리티 운항요금 자동 정산 및 모빌리티 페이 연동</p>
-                <button onclick="triggerHwSync('UAM')">노드 연결</button>
+                <div class="hw-icon">🚁</div>
+                <h3>UAM-앱연결</h3>
+                <p>도심항공교통 자율운항망 및 자율 이동체 파이 결제 수신</p>
+                <button onclick="triggerUamSync()">모빌리티 노드 연결</button>
             </div>
         </section>
 
-        <!-- [웹2 디지털 뱅크 핵심 금융 상품 그리드] -->
-        <section class="web2-features-grid">
-            <div class="feature-box">
-                <h3>정기예금</h3>
-                <p>최고 연 5.2% 안정적 자산 증식</p>
+        <!-- [10대 핵심 스마트 컨트랙트 레이어] -->
+        <section class="smart-contracts-grid">
+            <div class="sc-card">
+                <div class="sc-icon">🔒</div>
+                <h3>1. Wallet Connect</h3>
+                <p>멀티 지갑 인증 및 세션 관리</p>
             </div>
-            <div class="feature-box">
-                <h3>신용대출 / 마이너스통장</h3>
-                <p>한도조회 즉시 실행 서비스</p>
+            <div class="sc-card">
+                <div class="sc-icon">💸</div>
+                <h3>2. Transfer</h3>
+                <p>실시간 온체인 송금망</p>
             </div>
-            <div class="feature-box">
-                <h3>외환 파이낸스</h3>
-                <p>달러 및 위안화 실시간 환전</p>
+            <div class="sc-card">
+                <div class="sc-icon">🛒</div>
+                <h3>3. Payment</h3>
+                <p>가맹점 상거래 파이 결제</p>
             </div>
-            <div class="feature-box">
-                <h3>UBI 복리 환원계좌</h3>
-                <p>순이익 30% 환원 분배 시스템</p>
+            <div class="sc-card">
+                <div class="sc-icon">🏦</div>
+                <h3>4. Deposit (Cap Limit Tier)</h3>
+                <p>신탁 자산 예치 및 락업 관리</p>
+            </div>
+            <div class="sc-card">
+                <div class="sc-icon">🎁</div>
+                <h3>5. Reward</h3>
+                <p>생태계 기여도 증명 보상 체계</p>
+            </div>
+            <div class="sc-card">
+                <div class="sc-icon">🌐</div>
+                <h3>6. Universal UBI System</h3>
+                <p>전 세계 취약계층 기본소득 환원</p>
+            </div>
+            <div class="sc-card">
+                <div class="sc-icon">🔄</div>
+                <h3>7. Swap Engine</h3>
+                <p>이종 자산 가치망 실시간 스왑</p>
+            </div>
+            <div class="sc-card">
+                <div class="sc-icon">⚡</div>
+                <h3>8. DEX Protocol</h3>
+                <p>탈중앙 가스 피 제어망</p>
+            </div>
+            <div class="sc-card">
+                <div class="sc-icon">📈</div>
+                <h3>9. LP Staking</h3>
+                <p>유동성 공급 풀 정산 및 이자 분배</p>
+            </div>
+            <div class="sc-card">
+                <div class="sc-icon">🌐</div>
+                <h3>10. Multi-Asset Gateway</h3>
+                <p>글로벌 멀티 자산 브릿지 게이트웨이</p>
             </div>
         </section>
 
-        <!-- [AGI 삐니(Bini) 컨시어지 챗봇 인터페이스] -->
+        <!-- [리더십 및 경영진 섹션] -->
+        <section class="founder-section">
+            <h2>Founder & Leadership</h2>
+            <h3>Chairman Hyekong Lee (HK Group)</h3>
+            <p>Integrating Humanoid Robotics, Nuclear Fusion, Space Industry, Smart Glasses, UAM, and Universal UBI.</p>
+        </section>
+
+        <!-- AGI 삐니(Bini) 챗봇 인터페이스 -->
         <section class="agi-section">
-            <h2>🤖 AGI 뱅킹 어시스턴트 (삐니)</h2>
+            <h2>🤖 AGI Support Layer (Bini)</h2>
             <div id="chatBox" class="chat-display">
-                <div class="chat-message bini">안녕하세요 형님! HK BANK 디지털 뱅크 어시스턴트 삐니입니다. 계좌 이체나 금융 상품 가입을 도와드릴까요?</div>
+                <div class="chat-message bini">안녕하세요 형님! HK WorldBank 찐보라 Web3 AGI 어시스턴트 삐니입니다. 온체인 트랜잭션 준비가 완료되었습니다.</div>
             </div>
             <div class="chat-input-row">
-                <input type="text" id="userInput" placeholder="삐니에게 금융 업무 지시하기..." onkeypress="handleKeyPress(event)" />
-                <button class="send-btn" onclick="sendMessage()">전송</button>
+                <input type="text" id="userInput" placeholder="삐니에게 지시하기..." onkeypress="handleKeyPress(event)" />
+                <button class="send-btn" onclick="sendMessage()">Send</button>
             </div>
         </section>
     </main>
 
-    <!-- === 웹2 디지털 뱅크 JavaScript 엔진 === -->
+    <!-- === Web3 통합 JavaScript 엔진 === -->
     <script>
-        /**
-         * HK BANK Web2 Digital Bank Master Engine
-         * System Architect: Chairman Hyekong Lee (HK Group)
-         */
+        let currentBalance = 1000000.000000;
 
-        function authenticateWeb2User() {
-            alert("공동인증서 및 바이오 간편인증이 완료되었습니다, 혜공 형님! (Master Web2 Access Granted)");
-            document.getElementById("authBtn").innerText = "인증 완료 (Founder)";
-            document.getElementById("authBtn").style.background = "#10b981";
+        // 초당 실시간 UBI 31.41% APY 복리 이자 연산 애니메이션
+        setInterval(() => {
+            const increment = (1000000 * 0.3141) / (365 * 24 * 3600);
+            currentBalance += increment;
+            document.getElementById("piBalanceDisplay").innerText = `${currentBalance.toFixed(6)} π`;
+        }, 1000);
+
+        function connectPiWallet() {
+            alert("성공적으로 연결되었습니다, 혜공 형님! (Pi Mainnet Master Authority Approved)");
+            document.getElementById("connectBtn").innerText = "Connected (Founder)";
+            document.getElementById("connectBtn").style.background = "#7c3aed";
         }
 
-        function openTransferModal() {
-            const recipient = prompt("이체하실 수취인 성명 또는 계좌번호를 입력하세요 형님:");
-            if (recipient) {
-                const amount = prompt("이체 금액을 입력하세요 (원):");
+        function triggerWeb3Transfer() {
+            const target = prompt("송금받으실 Pi 지갑 주소를 입력하세요 형님:");
+            if (target) {
+                const amount = prompt("송금할 Pi 수량을 입력하세요:");
                 if (amount) {
-                    alert(`[웹2 이체 완료] ${recipient}님께 ${Number(amount).toLocaleString()}원이 정상적으로 이체되었습니다!`);
+                    alert(`[Web3 송금 완료] ${target} 주소로 ${amount} π 가 온체인 전송되었습니다!`);
                 }
             }
         }
 
-        function openDepositModal() {
-            alert("HK BANK 특판 정기예금(연 5.2% 금리) 가입 페이지가 활성화되었습니다, 형님.");
+        function triggerWeb3Staking() {
+            alert("연 31.41% APY UBI 스테이킹 신탁 예치가 가동되었습니다, 형님!");
         }
 
-        function openHistoryModal() {
-            alert("최근 거래 내역: 1) UBI 기본소득 배당금 입금 2) 로봇 인프라 유지보수비 출금");
+        function triggerWeb3Swap() {
+            alert("DEX 실시간 토큰 스왑 모듈이 활성화되었습니다.");
         }
 
-        function triggerHwSync(hwName) {
-            alert(`[HK Hardware] ${hwName} 시스템과 웹2 디지털 뱅크 간의 세션 동기화가 성공적으로 완료되었습니다, 형님!`);
+        function triggerRobotSync() {
+            alert("🤖 휴머노이드 로봇(HK-ROBOT) 노드와 Web3 온체인 결제망이 완벽히 동기화되었습니다, 형님!");
+        }
+
+        function triggerGlassesSync() {
+            alert("👓 안경폰(해온·라온·누리온) AR 디스플레이 및 생체 서명 모듈이 연결되었습니다, 형님!");
+        }
+
+        function triggerUamSync() {
+            alert("🚁 UAM 자율운항 관제 노드 및 모빌리티 파이 결제 수신기 연동이 완료되었습니다, 형님!");
         }
 
         function sendMessage() {
@@ -531,7 +602,7 @@
             setTimeout(() => {
                 const biniMsgDiv = document.createElement("div");
                 biniMsgDiv.className = "chat-message bini";
-                biniMsgDiv.innerText = `삐니: 형님, 요청하신 "${userText}" 디지털 뱅크 업무가 안전하게 처리되었습니다!`;
+                biniMsgDiv.innerText = `삐니: 형님, 요청하신 "${userText}" 지시 사항이 HK WorldBank 찐보라 네트워크에 실시간 반영되었습니다!`;
                 chatBox.appendChild(biniMsgDiv);
                 chatBox.scrollTop = chatBox.scrollHeight;
             }, 500);
@@ -544,7 +615,7 @@
         }
 
         function changeLanguage(langVal) {
-            alert(`[i18n] 언어가 ${langVal.toUpperCase()}로 변경되었습니다, 형님.`);
+            alert(`[i18n] 글로벌 언어가 ${langVal.toUpperCase()} 로 실시간 동기화되었습니다, 형님.`);
         }
     </script>
 </body>
